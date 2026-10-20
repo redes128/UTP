@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f2933">
+<title>FICAM · Decanato</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--g:#1f2933;--g2:#323f4b;--cy:#0e9fb0;--cyS:#e0f5f7;--am:#f0a30a;--amS:#fdf3dc;--ok:#1b8a5a;--okS:#e3f3ea;--bad:#c2412d;--badS:#fbe9e6;--ink:#1f2933;--mut:#6b7684;--line:#e2e6ea;--bg:#f3f5f7;--soft:#eceff2}
+body{margin:0;font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit}
+button{border:0;background:var(--soft);color:var(--ink);border-radius:8px;min-height:40px;padding:0 13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+button.p{background:var(--g);color:#fff}button.c{background:var(--cy);color:#fff}button.x{background:var(--badS);color:var(--bad)}
+input,select,textarea{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;background:#fff;color:var(--ink)}
+.ic{flex:none;vertical-align:-3px}
+header{position:sticky;top:0;z-index:20;background:var(--g);color:#fff;padding:calc(env(safe-area-inset-top) + 6px) 12px 10px}
+header .r{display:flex;align-items:center;gap:10px;min-height:44px}
+.lg{width:34px;height:34px;border-radius:8px;background:var(--cy);display:grid;place-items:center}
+header h1{margin:0;font-size:17px;flex:1;line-height:1.15}header h1 small{display:block;font-size:12px;font-weight:500;color:#9fb3c8}
+#st{font-size:11.5px;color:#9fb3c8;display:flex;align-items:center;gap:5px}#st:before{content:"";width:7px;height:7px;border-radius:7px;background:#3ccf8e}#st.w:before{background:var(--am)}
+main{max-width:760px;margin:auto;padding:10px 12px}section{display:none}section.on{display:block}
+.k{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
+.k h4{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}.k h4 .ic{color:var(--cy)}
+.s{color:var(--mut);font-size:13px}.e{text-align:center;color:var(--mut);padding:28px 0}
+.kp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}.kp div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.kp b{display:block;font-size:24px;color:var(--g)}.kp span{font-size:12px;color:var(--mut)}.kp .hl{background:var(--g);border-color:var(--g)}.kp .hl b{color:#fff}.kp .hl span{color:#9fb3c8}
+.bar{height:8px;background:var(--soft);border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--cy)}
+.row{margin:10px 0;font-size:13px}.row>div:first-child{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}
+.seg{display:flex;gap:4px;padding:3px;background:var(--soft);border-radius:10px;margin:8px 0;overflow-x:auto;scrollbar-width:none}
+.seg button{flex:1;background:transparent;font-size:13px;min-height:34px;color:var(--mut);padding:0 9px}.seg .on{background:#fff;color:var(--g);box-shadow:0 1px 3px #1f293322}
+.hd{display:flex;align-items:center;gap:8px;margin:16px 2px 6px;font-size:12px;font-weight:700;letter-spacing:.8px;color:var(--mut);text-transform:uppercase}.hd:after{content:"";flex:1;height:1px;background:var(--line)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--soft);color:#3e4c59}
+.chip.ok{background:var(--okS);color:var(--ok)}.chip.est{background:var(--amS);color:#9a6700}.chip.now{background:var(--ok);color:#fff}.chip.cy{background:var(--cyS);color:#0b7d8a}
+/* matriz carrera x semestre */
+.mx{width:100%;border-collapse:separate;border-spacing:3px;font-size:12px}.mx th{font-size:11px;color:var(--mut);font-weight:600}
+.mx td{text-align:center;border-radius:6px;padding:7px 2px;font-weight:700;min-width:30px}.mx td.n{text-align:left;font-weight:600;padding-left:2px;min-width:92px;background:none}
+.mxw{overflow-x:auto}
+/* filas de clase */
+.cl{background:#fff;border:1px solid var(--line);border-left:4px solid var(--k);border-radius:10px;padding:9px 11px;margin:7px 0}
+.cl .t{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px}.cl .t .sp{margin-left:auto;color:var(--mut)}.cl .t .sp b{color:var(--ok)}
+.cl .a1{font-size:16px;font-weight:800;margin-top:4px}.cl .m1{font-size:13.5px;margin-top:2px}.cl .m2{font-size:12.5px;color:var(--mut);margin-top:1px}
+.cl .ac{display:flex;gap:6px;margin-top:8px}.cl .ac button{flex:1;min-height:36px;font-size:13px}
+.cl.vis{opacity:.62}
+/* jornadas */
+.jo{background:#fff;border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+.jo .jh{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--soft)}
+.jo .jh .d{width:46px;text-align:center;line-height:1.05}.jo .jh .d b{display:block;font-size:20px}.jo .jh .d span{font-size:11px;color:var(--mut);text-transform:uppercase}
+.jo .jh .i{flex:1}.jo .jh .i b{font-size:14px}.jo .jh .i div{font-size:12.5px;color:var(--mut)}
+.it{display:flex;align-items:center;gap:8px;padding:8px 14px;border-top:1px solid var(--line);font-size:13px}
+.it .h{width:44px;font-weight:700;flex:none}.it .x1{flex:1;min-width:0}.it .x1 b{display:block}.it .x1 span{font-size:12px;color:var(--mut);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it button{min-height:32px;padding:0 8px;background:#fff;border:1px solid var(--line)}
+.f3{display:grid;grid-template-columns:1fr 1fr;gap:6px}#v-jor .f3>div:first-child{grid-column:1/3}.f3 select{min-width:0}.lab{display:block;font-size:12px;font-weight:600;color:var(--mut);margin:0 0 3px}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}summary{font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px}summary .ic{color:var(--cy)}
+nav{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:20}
+nav button{background:none;border-radius:0;min-height:60px;font-size:11px;color:var(--mut);padding:0;flex-direction:column;gap:3px}nav .on{color:var(--cy)}
+.sh{position:fixed;inset:0;background:#1f293399;display:none;align-items:flex-end;z-index:40}.sh.o{display:flex}
+.sh>div{background:var(--bg);width:100%;max-height:90vh;overflow:auto;border-radius:16px 16px 0 0;padding:16px 12px calc(16px + env(safe-area-inset-bottom));max-width:760px;margin:auto}
+#toast{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));background:var(--g);color:#fff;border-radius:10px;padding:8px 10px 8px 14px;display:none;align-items:center;gap:8px;z-index:50;max-width:736px;margin:auto}#toast.o{display:flex}#toast span{flex:1}#toast button{min-height:32px;background:#ffffff22;color:#fff}
+pre{background:var(--g);color:#d9e2ec;padding:10px;border-radius:8px;overflow:auto;font-size:12px}
+.warn{display:flex;gap:8px;background:var(--amS);color:#7a5200;border-radius:10px;padding:9px 11px;font-size:13px;margin:10px 0}
+</style></head><body>
+<header><div class="r"><div class="lg" id="lg"></div><h1>FICAM · Decanato<small>Ingeniería y Ciencias Aplicadas Meca-Electrónicas</small></h1><span id="st"></span></div></header>
+<main>
+ <section id="v-res" class="on"></section>
+ <section id="v-jor"></section>
+ <section id="v-hor"></section>
+ <section id="v-aho"></section>
+ <section id="v-cfg"></section>
+</main>
+<nav id="nav"></nav>
+<div id="toast"></div>
+<div class="sh" id="sAlt"><div><h3 id="altT">Cambiar aula</h3><p class="s" id="altS"></p><div id="altL"></div><button style="width:100%;margin-top:8px" onclick="closeS()">Cerrar</button></div></div>
+
+<script>
+const FB_CONFIG={apiKey:"AIzaSyB3rlgzAi_8QZdMbEUKJ38-6ryYAtum8Kk",authDomain:"utppala-786db.firebaseapp.com",projectId:"utppala-786db",storageBucket:"utppala-786db.firebasestorage.app",messagingSenderId:"157703399420",appId:"1:157703399420:web:a6484126cf369f641f3479"};
+const DATA={"M":["ACCIONAMIENTOS ELÉCTRICOS","ALGEBRA I","ALGEBRA II","ANALISIS COMPLEJO","ANALISIS VECTORIAL","ANATOMÍA FUNCIONAL","AUTOMATIZACIÓN INDUSTRIAL","AUTOMÓVILES Y EQUIPO PESADO","BIOFÍSICA","BIOQUÍMICA GENERAL","CALCULO I","CALCULO II","CENTRALES HIDROELÉCTRICAS","CENTRALES TERMOELÉCTRICAS","CIRCUITOS ELECTRICOS II","CIRCUITOS ELÉCTRICOS I","CIRCUITOS ELÉCTRICOS II","CÁLCULO I","DESPACHO EC. Y PLANIFIC. S.E.P.","DIBUJO MECÁNICO COMPUTARIZADO","DIBUJO TECNICO COMPUTARIZADO","DIBUJO TÉCNICO COMPUTARIZADO","DINÁMICA","DISEÑO ASISTIDO CAD/CAM","DISEÑO DE SISTEMAS DE CONTROL","DISEÑO DE SISTEMAS ELECTRONICOS","DISEÑO MECANICO I","DISEÑO MECATRÓNICO","DISEÑO Y MODELADO COMPUTARIZADO","ECUACIONES DIFERENCIALES Y TRANSFORMADAS","ELECTROMAGNETISMO","ELECTRONICA DIGITAL I","ELECTROTECNIA Y MÁQUINAS ELÉCTRICAS","ELECTRÓNICA DE POTENCIA I","ELECTRÓNICA DE POTENCIA II","ELECTRÓNICA DIGITAL II","ELECTRÓNICA I","ELECTRÓNICA II","ELEMENTOS DE MÁQUINAS I","ELEMENTOS DE MÁQUINAS II","ENERGÍAS ALTERNATIVAS E IMPACTO AMBIENTAL","ESTUDIO Y ENSAYO DE MATERIALES","ESTÁTICA","FISICA BASICA I","FISICA BASICA II","FISICA BASICA III","FÍSICA NUCLEAR","INGENIERIA DE MATERIALES","INGENIERÍA DEL MANTENIMIENTO","INSTALACIONES ELÉCTRICAS","INSTALACIONES ELÉCTRICAS I","INSTALACIONES ELÉCTRICAS II","INSTRUMENTACIÓN INDUSTRIAL","INTRODUCCIÓN A LA BIOMEDICINA","INTRODUCCIÓN A LA PROGRAMACION","INTRODUCCIÓN A LA PROGRAMACIÓN","LINEAS DE TRANS.GUIAS DE ONDA","LINEAS DE TRANSMISIÓN","MANTENIMIENTO ELÉCTRICO","MAQ.  NEUMATICAS Y VENT.","MAQUINAS ELÉCTRICAS I","MAQUINAS ELÉCTRICAS II","MAQUINAS TERMICAS III","MATEMATICA APLICADA","MECANISMOS","MECÁNICA DE FLUIDOS","MECÁNICA DE MATERIALES Y ESTRUCTURAS","MEDIDAS ELÉCTRICAS","METODOLOGÍA DE LA INVESTIGACIÓN","MICROCONTROLADORES","MÁQUINAS DE ELEVACIÓN Y TRANSPORTE","MÁQUINAS HIDRÁULICAS","MÁQUINAS TÉRMICAS I","MÁQUINAS TÉRMICAS II","MÉTODOS NUMÉRICOS","PRACTICA LABORAL","PREPARACIÓN Y EVALUACIÓN DE PROYECTOS","PROBABILIDAD Y ESTADISTICA","PROBABILIDAD Y ESTADÍSTICA","PROCESAMIENTO DIGITAL DE SEÑALES","PROGRAMACIÓN GRÁFICA I","PROGRAMACIÓN GRÁFICA II","PROGRAMACIÓN GRÁFICA III","PROTECCIONES DE S.E.P.","PRÁCTICA INDUSTRIAL","QUÍMICA GENERAL APLICADA","REDES DE COMPUTACION","REFRIGERACION Y AIRE ACOND.","RESISTENCIA DE MATERIALES","ROBOTICA","SENSORES-ACONDICIONADORES BIOMÉDICOS","SISTEMAS DE COMPUTACIÓN","SISTEMAS DE COMUNICACIONES I","SISTEMAS DE CONTROL I","SISTEMAS DE CONTROL II","SISTEMAS DE CONTROL III","SISTEMAS DE DISTRIBUCIÓN","SISTEMAS ELÉCTRICOS DE POTENCIA I","SISTEMAS ELÉCTRICOS DE POTENCIA II","SUBESTACIONES ELÉCTRICAS","TECNOLOGÍA DEL GAS NATURAL","TECNOLOGÍA MECÁNICA I","TECNOLOGÍA MECÁNICA II","TEORIA DE TELECOMUNICACIONES II","TEORÍA DE TELECOMUNICACIONES I","TERMODINÁMICA TÉCNICA","TRABAJO DE TITULACIÓN","TRANSFORMADAS Y FUNCIONES ESP.","TRANSMISIÓN DE CALOR","TÉCNICAS DE ALTA TENSIÓN","VIBRACIONES MECÁNICAS"],"C":["INGENIERIA BIOMEDICA","INGENIERÍA ELECTROMECÁNICA","INGENIERÍA ELECTRÓNICA","INGENIERÍA ELÉCTRICA","INGENIERÍA MECATRÓNICA","INGENIERÍA MECÁNICA"],"CN":["Biomédica","Electromecánica","Electrónica","Eléctrica","Mecatrónica","Mecánica"],"CM":[[134,86,220],[379,17,396],[148,21,169],[294,32,326],[237,38,275],[279,9,288]],"D":["ARCE HUMEREZ DHANA PAOLA","AVALOS MEJIA Irineo","Aguilar Fernandez Jaime Ladislao","Barron Escobar Javier","CABA CKACKA EDGAR","CALLE QUENTA EDGAR","CARDOZO DIAZ FABIO ALBERTO","CHUMACERO RODRIGUEZ EDUARDO STEVE","CORTES YAÑEZ SUSANA","Caballero Claure Ricardo","Calvimontes Cano Alvaro Rodrigo","Carreon Entrambasaguas Alfredo Renato","Curcuy Ortuño Javier","Dominguez Lucuy Walter Sergio","Echeverria Zamorano Alfredo Agustin","FLORES ROSO JUAN CARLOS","FLORES VELASCO ADRIANA VIANCA","Flores Burgos Alberto","GABRIEL FUENTES FRANZ ERWIN","GUTIÉRREZ GUERRA DIEGO PASCUAL","Galarza Limachi Oscar","Heredia Pardo Jose","Jaldin Zarate Walter","Jimenez Salinas Moises Roger","Lopez Encinas Windsor Yuri","MICHEL ESPINOZA ADALID RAMIRO","MIRANDA CARO Johnny","MIRANDA VALVERDE JHENNY IVANA","MURILLO TORRES ALVARO","Mallea Magne Walter","Montalvo Rodriguez Marco Antonio","Montaño Cuno Edwin","OBLITAS FORTUN JORGE LUIS","Ortuño Bustamante Juan Ramiro","PADILLA TORRES RODRIGO","PARINA CRUZ ALVARO","PICON BONILLA ALEX","POPPE ROJAS JUAN PABLO","Palacios Marquez German","Parra Torres Aquilino","Parraga Kanaudt David Richard","Patty Aguilar Nelson Marcelo","Pemintel Oropeza Jose","Quispe Alejandro Silverio","Quispe Marquez Nelson Oliver","RADA MERCADO CARLOS JORGE","RIVERA ARAMAYO CARMEN JULIA","ROCHA ARANCIBIA GROVER FELIPE","Robles Cordova Marco Antonio","SANDOVAL LAZO ALVARO","SANTILLAN ROLANDO","SENO CONDORI ARTURO FLAVIO","SIAQUE CHOQUE LIZ JHAJAYRA","Saavedra Arandia Marco Antonio","Secko Gonzales Ruter Rene","TEJERINA CHUNGARA ARNOLD TEDDY","TELLEZ HUMEREZ OSCAR ROBERTO","TORRES ANDRADE JUAN JOSE","Torres Espada Franklin","Torres Espada Juan Simon","Torres Romero Maria Teresa","VARGAS HERRERA SERGIO ALEJANDRO","Vasquez Roncal Marco Aurelio","Velasco Perez Rene Ramiro","Vera Palacios Gerardo Elias","Vilcaez Cuizara Ricardo","ZAMBRANA ZELADA Alfredo Javier","Zarate Valdez Vladimir Igor","Zurita Garcia Fredy Enrique"],"R":[[1,420,540,"B004",96,"1","7",40,3,18,"Teo"],[1,420,540,"A104",20,"11","1",6,3,7,"Lab"],[1,420,540,"B204",43,"1","1",54,5,16,"Teo"],[1,420,540,"B205",2,"3","2",23,1,17,"Teo"],[1,420,540,"B001",41,"8","1",56,5,1,"Lab"],[1,420,540,"A101",65,"2","4",47,1,24,"Teo"],[1,420,540,"B008",29,"2","3",7,3,14,"Teo"],[1,420,540,"A205",5,"1","4",52,0,60,"Teo"],[1,540,660,"B004",50,"1","4",59,3,19,"Teo"],[1,540,660,"B202",93,"1","5",38,3,33,"Teo"],[1,540,660,"A101",57,"1","6",17,3,19,"Teo"],[1,540,660,"B001",48,"1","8",48,5,6,"Teo"],[1,540,660,"B204",10,"1","1",54,3,5,"Teo"],[1,540,660,"B203",43,"4","1",43,3,2,"Lab"],[1,540,660,"A104",20,"5","1",6,3,3,"Lab"],[1,540,660,"B008",3,"1","3",42,1,0,"Teo"],[1,540,660,"B205",11,"1","2",23,1,18,"Teo"],[1,540,660,"A204",85,"1","1",44,1,50,"Teo"],[1,540,660,"B006",85,"6","1",51,0,5,"Lab"],[1,540,660,"A102",25,"2","6",49,2,10,"Teo"],[1,540,660,"A205",17,"7","1",7,0,29,"Teo"],[1,540,660,"B104",110,"2","4",31,1,15,"Teo"],[1,660,780,"B204",1,"1","1",60,5,4,"Teo"],[1,660,780,"B004",101,"1","4",59,5,23,"Teo"],[1,660,780,"A205",30,"1","4",17,3,14,"Prac"],[1,660,780,"B205",6,"1","8",38,3,0,"Teo"],[1,660,780,"B202",93,"1","5",14,5,18,"Teo"],[1,660,780,"B001",41,"5","1",48,5,13,"Teo"],[1,660,780,"A204",29,"1","3",68,5,9,"Teo"],[1,660,780,"B104",106,"1","9",42,1,37,"Teo"],[1,660,780,"A104",20,"6","1",6,3,10,"Lab"],[1,840,960,"B009",61,"1","5",13,3,16,"Teo"],[1,840,960,"B205",97,"1","7",12,3,29,"Teo"],[1,840,960,"B004",63,"1","3",31,5,35,"Teo"],[1,840,960,"A202",21,"2","1",67,5,5,"Lab"],[1,840,960,"B203",43,"1","1",9,5,8,"Lab"],[1,840,960,"A102",87,"1","7",21,5,11,"Teo"],[1,840,960,"B104",52,"1","7",30,2,2,"Teo"],[1,840,960,"B008",3,"2","3",63,3,13,"Teo"],[1,840,960,"A104",20,"4","1",58,3,6,"Lab"],[1,840,960,"A103",21,"6","1",6,2,13,"Teo"],[1,840,960,"A205",45,"1","3",17,5,2,"Teo"],[1,840,960,"A204",85,"2","1",4,0,16,"Teo"],[1,840,960,"A101",107,"1","4",50,1,36,"Teo"],[1,960,1080,"B104",73,"1","7",21,5,4,"Teo"],[1,960,1080,"A102",100,"1","8",31,5,7,"Teo"],[1,960,1080,"A103",104,"1","5",30,2,5,"Teo"],[1,960,1080,"B202",24,"1","7",38,2,13,"Teo"],[1,960,1080,"B008",43,"5","1",62,2,5,"Teo"],[1,960,1080,"A204",1,"2","1",11,3,10,"Teo"],[1,960,1080,"B205",10,"1","1",54,3,5,"Prac"],[1,960,1080,"A205",45,"2","3",63,1,21,"Teo"],[1,960,1080,"A201",15,"1","4",40,1,0,"Lab"],[1,960,1080,"B203",43,"7","1",43,1,3,"Lab"],[1,960,1080,"B204",2,"2","2",25,1,33,"Teo"],[1,960,1080,"B004",67,"1","4",50,3,14,"Teo"],[1,960,1080,"A104",80,"1","1",15,0,5,"Lab"],[1,960,1080,"A101",85,"3","1",51,0,21,"Teo"],[1,1080,1200,"A103",98,"1","8",63,3,19,"Teo"],[1,1080,1200,"A003",102,"1","5",1,5,3,"Lab"],[1,1080,1200,"B205",37,"1","4",66,2,12,"Teo"],[1,1080,1200,"B104",84,"1","9",42,5,8,"Teo"],[1,1080,1200,"A204",44,"3","2",23,3,15,"Teo"],[1,1080,1200,"B203",43,"6","1",43,3,4,"Lab"],[1,1080,1200,"A205",21,"1","1",33,1,5,"Teo"],[1,1080,1200,"A101",31,"1","5",50,2,5,"Teo"],[1,1080,1200,"B204",22,"1","2",25,5,31,"Teo"],[1,1080,1200,"A202",23,"1","8",28,4,6,"Teo"],[1,1080,1200,"A104",80,"3","1",15,0,5,"Lab"],[1,1080,1200,"B008",43,"2","1",16,3,4,"Teo"],[1,1080,1200,"A206",16,"1","5",18,1,20,"Lab"],[1,1140,1260,"B005",0,"1","7",65,3,12,"Teo"],[1,1200,1320,"A102",83,"1","8",53,3,15,"Teo"],[2,420,540,"B204",42,"1","2",24,5,14,"Teo"],[2,420,540,"A102",108,"1","5",58,5,16,"Teo"],[2,420,540,"B105",47,"1","3",59,5,27,"Teo"],[2,420,540,"B008",42,"2","2",31,5,29,"Teo"],[2,420,540,"A103",104,"1","5",30,2,5,"Prac"],[2,420,540,"A202",54,"2","1",62,2,3,"Lab"],[2,420,540,"B004",77,"2","2",6,3,19,"Teo"],[2,420,540,"B205",10,"3","1",22,1,27,"Teo"],[2,420,540,"A208",34,"1","7",35,2,16,"Teo"],[2,420,540,"A204",67,"2","6",63,1,0,"Teo"],[2,420,540,"A204",67,"2","6",63,1,9,"Teo"],[2,540,660,"B205",81,"1","2",15,0,126,"Teo"],[2,660,780,"B204",17,"7","1",7,0,29,"Prac"],[2,540,660,"B202",94,"1","6",38,3,25,"Teo"],[2,540,660,"B010",101,"1","4",59,5,23,"Prac"],[2,540,660,"A103",99,"1","7",17,3,22,"Teo"],[2,660,780,"A202",103,"1","7",62,2,20,"Teo"],[2,660,780,"A201",57,"1","6",17,3,19,"Prac"],[2,540,660,"A201",15,"1","4",40,3,15,"Teo"],[2,540,660,"B005",59,"1","7",21,5,15,"Teo"],[2,540,660,"B204",11,"2","2",54,3,15,"Teo"],[2,660,780,"B006",85,"1","1",51,1,15,"Lab"],[2,540,660,"B203",45,"1","3",14,5,14,"Lab"],[2,540,660,"A101",29,"2","3",7,3,14,"Prac"],[2,540,660,"B104",26,"1","8",57,5,13,"Teo"],[2,660,780,"B202",14,"1","5",38,3,13,"Teo"],[2,540,660,"A104",20,"7","1",6,3,9,"Lab"],[2,660,780,"B010",41,"1","1",59,5,9,"Teo"],[2,660,780,"A205",29,"1","3",68,5,9,"Prac"],[2,540,660,"A205",43,"4","1",31,1,8,"Teo"],[2,540,660,"B001",41,"7","1",56,5,7,"Lab"],[2,660,780,"B205",76,"1","6",25,5,7,"Teo"],[2,660,780,"A101",70,"1","8",57,5,7,"Teo"],[2,660,780,"B008",10,"6","1",29,2,6,"Teo"],[2,660,780,"B001",41,"2","2",47,1,5,"Teo"],[2,540,660,"A204",43,"3","1",39,3,3,"Teo"],[2,540,660,"B008",1,"5","1",34,2,2,"Teo"],[2,660,780,"A204",10,"2","1",14,5,2,"Teo"],[2,660,780,"A104",20,"8","1",6,3,1,"Lab"],[2,840,960,"A205",30,"1","4",17,3,14,"Teo"],[2,840,960,"B001",41,"4","1",48,5,8,"Lab"],[2,840,960,"A201",19,"1","2",33,5,15,"Teo"],[2,840,960,"A101",38,"1","6",42,5,17,"Teo"],[2,840,960,"B104",106,"1","9",64,5,50,"Teo"],[2,840,960,"B205",100,"1","8",31,5,7,"Prac"],[2,840,960,"A202",56,"1","7",62,2,9,"Teo"],[2,840,960,"A204",66,"1","5",23,5,12,"Teo"],[2,840,960,"A104",55,"5","1",10,3,7,"Lab"],[2,840,960,"B009",105,"2","3",13,1,24,"Teo"],[2,840,960,"B204",80,"1","1",15,0,16,"Teo"],[2,840,960,"A102",25,"2","6",49,2,10,"Prac"],[2,960,1080,"B008",39,"1","7",42,5,8,"Teo"],[2,960,1080,"B009",105,"1","3",13,5,19,"Teo"],[2,960,1080,"B001",41,"1","1",48,5,3,"Lab"],[2,960,1080,"B205",4,"1","2",62,3,16,"Teo"],[2,960,1080,"B104",52,"1","7",30,2,2,"Prac"],[2,960,1080,"B202",95,"1","8",38,2,6,"Teo"],[2,960,1080,"A201",21,"4","1",33,2,5,"Teo"],[2,960,1080,"B204",1,"4","1",54,3,12,"Teo"],[2,960,1080,"A205",45,"1","3",17,5,2,"Prac"],[2,960,1080,"B203",45,"2","3",14,1,15,"Lab"],[2,960,1080,"A204",88,"2","4",23,1,32,"Prac"],[2,960,1080,"A204",88,"2","4",23,1,3,"Prac"],[2,960,1080,"A102",106,"2","9",57,5,30,"Teo"],[2,960,1080,"A202",80,"2","1",15,0,8,"Lab"],[2,960,1080,"A101",85,"3","1",51,0,21,"Prac"],[2,1080,1200,"A102",7,"1","7",33,5,10,"Teo"],[2,1080,1200,"A003",47,"1","3",1,5,23,"Lab"],[2,1080,1200,"B205",36,"1","4",66,3,15,"Teo"],[2,1080,1200,"A101",89,"1","8",41,2,9,"Teo"],[2,1080,1200,"A201",106,"2","9",63,3,48,"Teo"],[2,1080,1200,"A204",42,"3","3",23,1,10,"Teo"],[2,1080,1200,"B104",106,"2","9",57,5,30,"Prac"],[2,1080,1200,"A104",81,"2","2",15,0,40,"Lab"],[2,1080,1200,"A205",68,"1","4",32,2,16,"Teo"],[2,1080,1200,"B203",44,"3","2",26,1,17,"Lab"],[2,1080,1200,"B001",41,"3","2",47,1,1,"Teo"],[2,1140,1260,"A103",58,"1","8",53,3,16,"Teo"],[2,1140,1260,"B005",0,"1","7",65,3,12,"Prac"],[3,420,540,"A101",12,"1","6",40,3,15,"Teo"],[3,420,540,"B105",32,"1","4",59,5,13,"Teo"],[3,420,540,"B104",71,"1","6",31,5,18,"Teo"],[3,420,540,"A202",54,"4","1",62,2,2,"Lab"],[3,420,540,"A102",51,"1","5",2,3,24,"Teo"],[3,420,540,"A205",45,"2","3",63,1,21,"Prac"],[3,420,540,"B205",44,"2","2",44,1,39,"Teo"],[3,420,540,"B008",67,"1","4",50,3,14,"Prac"],[3,420,540,"A204",90,"1","3",8,0,25,"Teo"],[3,420,540,"B006",85,"4","1",51,1,16,"Lab"],[3,540,660,"A201",64,"1","4",33,5,13,"Teo"],[3,540,660,"A205",88,"1","3",24,5,6,"Teo"],[3,540,660,"B004",50,"1","4",59,3,19,"Prac"],[3,540,660,"B008",93,"1","5",14,5,17,"Lab"],[3,540,660,"A202",79,"1","6",62,2,17,"Teo"],[3,540,660,"B202",24,"1","7",38,2,13,"Prac"],[3,540,660,"A104",21,"5","1",67,1,24,"Teo"],[3,540,660,"A204",10,"4","1",54,3,23,"Teo"],[3,540,660,"B205",11,"1","2",23,1,18,"Prac"],[3,540,660,"A102",106,"2","9",50,1,36,"Teo"],[3,540,660,"A103",106,"2","9",57,5,30,"Lab"],[3,540,660,"A101",68,"1","4",32,2,16,"Prac"],[3,540,660,"B001",41,"9","1",56,5,0,"Lab"],[3,540,660,"B203",43,"10","1",61,1,5,"Lab"],[3,540,660,"A206",37,"2","6",0,1,1,"Lab"],[3,540,660,"A206",37,"2","6",0,1,0,"Lab"],[3,540,660,"B204",43,"4","1",31,1,8,"Prac"],[3,660,780,"B202",93,"1","5",38,3,33,"Prac"],[3,660,780,"B205",1,"1","1",60,5,4,"Prac"],[3,660,780,"A202",56,"1","7",62,2,9,"Prac"],[3,660,780,"B008",10,"6","1",29,2,6,"Prac"],[3,660,780,"B204",55,"2","1",20,1,30,"Teo"],[3,660,780,"B004",49,"2","5",59,1,26,"Teo"],[3,660,780,"A104",35,"2","6",50,2,8,"Teo"],[3,660,780,"A204",22,"1","2",25,5,31,"Prac"],[3,660,780,"A205",8,"1","3",37,0,28,"Teo"],[3,660,780,"B001",41,"10","1",56,5,1,"Lab"],[3,660,780,"B104",91,"2","3",49,2,11,"Teo"],[3,840,960,"A204",55,"1","1",20,3,8,"Teo"],[3,840,960,"B104",106,"1","9",40,3,42,"Teo"],[3,840,960,"B001",41,"2","1",48,5,0,"Lab"],[3,840,960,"A201",63,"1","3",31,5,35,"Prac"],[3,840,960,"A102",73,"1","7",21,5,4,"Lab"],[3,840,960,"A101",38,"1","6",42,5,17,"Prac"],[3,840,960,"A202",20,"10","1",6,3,3,"Lab"],[3,840,960,"B203",44,"1","2",3,3,2,"Lab"],[3,840,960,"B204",10,"4","1",54,3,20,"Prac"],[3,840,960,"A104",21,"13","1",58,2,0,"Lab"],[3,840,960,"B205",2,"2","2",25,1,33,"Prac"],[3,840,960,"A208",33,"1","6",35,3,23,"Teo"],[3,840,960,"B008",1,"6","1",16,4,5,"Teo"],[3,840,960,"A205",67,"2","6",63,1,0,"Prac"],[3,840,960,"A205",67,"2","6",63,1,9,"Prac"],[3,960,1080,"A201",13,"1","6",17,3,22,"Teo"],[3,960,1080,"A204",15,"1","4",40,3,15,"Prac"],[3,960,1080,"B104",87,"1","7",21,5,11,"Lab"],[3,960,1080,"B009",62,"1","8",13,5,2,"Teo"],[3,960,1080,"B001",41,"3","1",48,5,0,"Lab"],[3,960,1080,"A202",19,"1","2",33,5,11,"Lab"],[3,960,1080,"A104",20,"9","1",6,3,2,"Lab"],[3,960,1080,"A101",66,"1","5",23,5,12,"Teo"],[3,960,1080,"B204",1,"4","1",54,3,12,"Prac"],[3,960,1080,"B203",44,"2","2",3,3,2,"Lab"],[3,960,1080,"B005",27,"1","8",41,4,10,"Teo"],[3,960,1080,"B008",3,"1","3",42,1,0,"Prac"],[3,960,1080,"A205",74,"1","2",50,2,13,"Teo"],[3,960,1080,"A208",34,"1","7",35,2,16,"Prac"],[3,960,1080,"A102",92,"2","8",45,2,4,"Teo"],[3,960,1080,"A206",37,"1","6",0,1,2,"Lab"],[3,960,1080,"A206",37,"1","6",0,1,15,"Lab"],[3,1080,1200,"B204",60,"1","5",40,3,20,"Teo"],[3,1080,1200,"A103",18,"1","8",63,3,20,"Teo"],[3,1080,1200,"B202",94,"1","6",38,3,25,"Prac"],[3,1080,1200,"A003",102,"2","5",1,5,3,"Lab"],[3,1080,1200,"B203",43,"2","1",27,5,6,"Lab"],[3,1080,1200,"A204",36,"2","3",66,2,2,"Teo"],[3,1080,1200,"A205",78,"1","4",58,5,20,"Teo"],[3,1080,1200,"B205",76,"1","6",25,5,7,"Prac"],[3,1080,1200,"A104",28,"1","3",7,1,35,"Lab"],[3,1080,1200,"B008",43,"2","1",16,3,4,"Prac"],[3,1200,1320,"B005",109,"1","8",65,3,14,"Teo"],[4,420,480,"A202",43,"5","1",62,2,5,"Prac"],[4,420,540,"A204",42,"1","2",24,5,14,"Prac"],[4,420,540,"B105",47,"2","3",59,5,4,"Lab"],[4,420,540,"B001",48,"1","8",48,5,6,"Prac"],[4,420,540,"B008",51,"1","5",2,3,24,"Prac"],[4,420,540,"A205",1,"2","1",11,3,10,"Prac"],[4,420,540,"A101",77,"2","2",6,3,19,"Prac"],[4,420,540,"B204",10,"3","1",22,1,27,"Prac"],[4,420,540,"B205",2,"3","2",23,1,17,"Prac"],[4,420,540,"A201",67,"1","4",50,3,14,"Lab"],[4,420,540,"A208",33,"1","6",35,3,23,"Prac"],[4,480,540,"A202",43,"5","1",62,2,5,"Prac"],[4,540,660,"B204",60,"1","5",40,3,20,"Prac"],[4,540,660,"A101",99,"1","7",17,3,22,"Prac"],[4,540,660,"B202",6,"1","8",38,3,0,"Prac"],[4,540,660,"B010",32,"1","4",59,5,13,"Prac"],[4,540,660,"A202",103,"1","7",62,2,20,"Prac"],[4,540,660,"B001",41,"5","1",48,5,11,"Prac"],[4,540,660,"A104",21,"2","1",33,5,18,"Teo"],[4,540,660,"B008",10,"2","1",14,5,2,"Prac"],[4,540,660,"A102",106,"2","9",63,3,48,"Prac"],[4,540,660,"B205",42,"3","3",23,1,10,"Prac"],[4,540,660,"A201",107,"1","4",50,1,36,"Prac"],[4,540,660,"B006",85,"5","1",4,0,11,"Lab"],[4,540,660,"A205",26,"1","8",57,5,13,"Lab"],[4,540,660,"A204",1,"3","1",36,1,17,"Teo"],[4,540,660,"B104",91,"2","3",49,2,11,"Prac"],[4,540,660,"B203",43,"8","1",61,1,5,"Lab"],[4,660,780,"B205",97,"1","7",12,3,29,"Prac"],[4,660,780,"B202",14,"1","5",38,3,13,"Prac"],[4,660,780,"A102",71,"1","6",31,5,18,"Lab"],[4,660,780,"A202",21,"3","1",62,5,5,"Lab"],[4,660,780,"A205",1,"5","1",34,2,2,"Prac"],[4,660,780,"B009",105,"2","3",13,1,24,"Prac"],[4,660,780,"A204",85,"1","1",44,1,50,"Prac"],[4,660,780,"A101",70,"1","8",57,5,7,"Prac"],[4,660,780,"A104",81,"1","2",15,0,86,"Lab"],[4,660,780,"B001",41,"6","1",56,5,0,"Lab"],[4,660,780,"B008",1,"6","1",16,4,5,"Prac"],[4,660,780,"B204",46,"1","4",8,0,59,"Teo"],[4,660,780,"A201",43,"6","1",9,3,15,"Teo"],[4,660,780,"B004",110,"1","4",17,5,2,"Teo"],[4,840,960,"A103",72,"1","6",58,5,13,"Teo"],[4,840,960,"B104",106,"1","9",64,5,50,"Prac"],[4,840,960,"B009",40,"1","5",13,5,10,"Teo"],[4,840,960,"A104",19,"2","2",33,5,4,"Lab"],[4,840,960,"A201",12,"1","6",40,3,15,"Prac"],[4,840,960,"B205",42,"2","2",31,5,29,"Prac"],[4,840,960,"A204",82,"1","3",15,0,32,"Teo"],[4,840,960,"A102",86,"2","4",45,2,9,"Teo"],[4,840,960,"B001",41,"3","2",47,1,1,"Prac"],[4,960,1080,"B009",61,"1","5",13,3,16,"Prac"],[4,960,1080,"B004",96,"1","7",40,3,18,"Prac"],[4,960,1080,"A102",106,"1","9",64,5,50,"Lab"],[4,960,1080,"B205",4,"1","2",62,3,16,"Prac"],[4,960,1080,"A101",66,"1","5",23,5,12,"Prac"],[4,960,1080,"B202",95,"1","8",38,2,6,"Prac"],[4,960,1080,"A104",55,"6","1",10,3,3,"Lab"],[4,960,1080,"A202",27,"1","8",41,4,10,"Prac"],[4,960,1080,"A205",31,"1","5",50,2,5,"Prac"],[4,960,1080,"B204",10,"5","1",7,3,4,"Teo"],[4,960,1080,"B006",9,"1","2",46,0,25,"Lab"],[4,960,1080,"B001",41,"5","1",56,5,2,"Lab"],[4,960,1080,"B203",45,"3","3",55,2,1,"Lab"],[4,960,1080,"B104",110,"2","4",31,1,15,"Lab"],[4,1020,1140,"A103",98,"1","8",63,3,19,"Prac"],[4,1020,1140,"B005",106,"1","9",42,1,37,"Prac"],[4,1080,1200,"A102",7,"1","7",33,5,10,"Lab"],[4,1080,1200,"A003",101,"1","4",1,5,12,"Lab"],[4,1080,1200,"B205",36,"1","4",66,3,15,"Prac"],[4,1080,1200,"A202",89,"1","8",41,2,9,"Prac"],[4,1080,1200,"A205",78,"1","4",58,5,20,"Prac"],[4,1080,1200,"A204",85,"2","1",4,0,16,"Prac"],[4,1080,1200,"A104",35,"2","6",50,2,8,"Prac"],[4,1080,1200,"B203",44,"4","2",26,1,9,"Lab"],[4,1140,1260,"B005",109,"1","8",65,3,14,"Prac"],[5,420,540,"B008",108,"1","5",58,5,16,"Lab"],[5,420,540,"B105",41,"1","1",59,5,11,"Prac"],[5,420,540,"A205",88,"1","3",24,5,6,"Prac"],[5,420,540,"A202",79,"1","6",62,2,17,"Prac"],[5,420,540,"B203",43,"3","1",27,5,3,"Lab"],[5,420,540,"B204",11,"2","2",54,3,15,"Prac"],[5,420,540,"A201",20,"8","1",6,3,35,"Teo"],[5,420,540,"A208",33,"1","6",35,3,23,"Lab"],[5,420,540,"B205",5,"1","4",52,0,60,"Prac"],[5,420,540,"B004",110,"1","4",17,5,5,"Lab"],[5,540,660,"B009",105,"1","3",13,5,19,"Prac"],[5,540,660,"B202",93,"1","5",38,3,33,"Lab"],[5,540,660,"A101",59,"1","7",21,5,15,"Lab"],[5,540,660,"A104",21,"1","1",67,5,6,"Lab"],[5,540,660,"B008",3,"2","3",63,3,13,"Prac"],[5,540,660,"B205",44,"2","2",44,1,39,"Prac"],[5,540,660,"B004",49,"2","5",59,1,26,"Lab"],[5,540,660,"B006",85,"2","1",4,0,3,"Lab"],[5,540,660,"B204",9,"1","2",46,0,100,"Teo"],[5,540,660,"A208",34,"1","7",35,2,16,"Lab"],[5,540,660,"A206",90,"1","3",8,0,25,"Lab"],[5,540,660,"A205",80,"2","1",15,0,11,"Teo"],[5,540,660,"B001",41,"12","1",56,5,0,"Lab"],[5,540,660,"B203",43,"9","1",61,1,2,"Lab"],[5,540,660,"A204",43,"6","1",9,3,15,"Prac"],[5,660,720,"B006",9,"2","2",46,0,75,"Lab"],[5,660,780,"A205",13,"1","6",17,3,22,"Prac"],[5,660,780,"A102",72,"1","6",58,5,13,"Lab"],[5,660,780,"B008",39,"1","7",42,5,8,"Prac"],[5,660,780,"B009",62,"1","8",13,5,2,"Lab"],[5,660,780,"B204",43,"3","1",39,3,3,"Prac"],[5,660,780,"A202",21,"12","1",62,2,4,"Lab"],[5,660,780,"A201",35,"2","6",50,2,8,"Lab"],[5,660,780,"A104",82,"1","3",15,0,32,"Lab"],[5,660,780,"A204",1,"3","1",36,1,17,"Prac"],[5,660,780,"A206",36,"1","5",0,1,22,"Lab"],[5,660,780,"B001",41,"2","2",47,1,5,"Prac"],[5,660,780,"A103",69,"1","7",45,2,12,"Prac"],[5,660,780,"B205",67,"2","6",63,1,0,"Lab"],[5,660,780,"B205",67,"2","6",63,1,9,"Lab"],[5,720,780,"B006",9,"2","2",46,0,75,"Lab"],[5,840,960,"B202",94,"1","6",38,3,25,"Lab"],[5,840,960,"B009",40,"1","5",13,5,10,"Prac"],[5,840,960,"A102",64,"1","4",33,5,13,"Prac"],[5,840,960,"A201",54,"3","1",20,2,12,"Teo"],[5,840,960,"B205",44,"3","2",23,3,15,"Prac"],[5,840,960,"B204",43,"1","1",54,5,16,"Prac"],[5,840,960,"A104",31,"1","5",50,2,5,"Lab"],[5,840,960,"A202",80,"4","1",15,0,8,"Lab"],[5,840,960,"A204",65,"2","4",47,1,22,"Lab"],[5,840,960,"B006",85,"3","1",51,1,7,"Lab"],[5,900,1020,"B104",106,"1","9",40,3,42,"Prac"],[5,960,1080,"A201",21,"7","1",6,2,5,"Teo"],[5,960,1080,"A104",27,"1","8",41,4,10,"Lab"],[5,960,1080,"B205",88,"2","4",23,1,32,"Teo"],[5,960,1080,"B205",88,"2","4",23,1,3,"Teo"],[5,960,1080,"A205",74,"1","2",50,2,13,"Prac"],[5,960,1080,"A204",10,"5","1",7,3,4,"Prac"],[5,960,1080,"B005",86,"2","4",45,2,9,"Prac"],[5,960,1080,"A202",55,"1","1",5,3,3,"Lab"],[5,960,1080,"B204",46,"1","4",8,0,59,"Prac"],[5,1020,1140,"A103",18,"1","8",63,3,20,"Prac"],[5,1080,1200,"B205",37,"1","4",66,2,12,"Prac"],[5,1080,1200,"A003",101,"2","4",1,5,11,"Lab"],[5,1080,1200,"B104",84,"1","9",42,5,8,"Prac"],[5,1080,1200,"A202",89,"1","8",41,2,9,"Lab"],[5,1080,1200,"A205",21,"3","1",33,5,6,"Teo"],[5,1080,1200,"A101",65,"1","4",19,5,16,"Teo"],[5,1140,1260,"A103",58,"1","8",53,3,16,"Prac"],[6,420,540,"A103",83,"1","8",53,3,15,"Prac"],[6,420,540,"A202",23,"1","8",28,4,6,"Lab"],[6,540,660,"B104",75,"1","9",53,3,17,"Teo"],[6,540,660,"B205",36,"2","3",66,2,2,"Prac"],[6,540,660,"B204",8,"1","3",37,0,28,"Lab"],[6,540,660,"A204",53,"1","1",8,0,29,"Teo"],[6,540,660,"A103",69,"1","7",45,2,12,"Teo"],[6,600,720,"B004",65,"1","4",19,5,16,"Lab"],[6,660,780,"A102",106,"2","9",50,1,36,"Prac"],[6,660,780,"B204",53,"2","1",8,0,11,"Teo"],[6,660,780,"A103",92,"2","8",45,2,4,"Prac"]]};
+const SEMILLA=[['2026-10-07','08:30','11:30'],['2026-10-07','17:00','19:00'],['2026-10-08','08:30','11:30'],['2026-10-08','16:00','18:30'],['2026-10-12','18:00','19:30'],['2026-10-13','09:00','11:30'],['2026-10-20','08:30','11:00']];
+const AULA_MIN=10,PASILLO=5,PASO=AULA_MIN+PASILLO;
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={g:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},s:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const DN=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const CC=['#0e9fb0','#7b61ff','#f0a30a','#1b8a5a','#d6336c','#3d6fd6'];
+const I={home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',walk:'<circle cx="13" cy="4" r="2"/><path d="m9 20 3-6 3 3 2 4M7 12l3-4 4 2 3 3M10 8l-1 5"/>',
+cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+check:'<path d="M20 6 9 17l-5-5"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>',swap:'<path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/>',plus:'<path d="M12 5v14M5 12h14"/>',
+trash:'<path d="M3 6h18M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/>',cap:'<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+chart:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',bolt:'<path d="M13 2 4.5 13H12l-1 9 8.5-11H12z"/>',
+alert:'<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/>',dl:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',db:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>'};
+const ic=(n,s=18,w=2)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
+const hm=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'),mins=s=>{const[a,b]=String(s).split(':');return(+a)*60+(+b||0)};
+const nowM=()=>{const d=new Date();return d.getHours()*60+d.getMinutes()},fmt=n=>Math.round(n).toLocaleString('es-BO');
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),today=()=>iso(new Date());
+const dowF=f=>new Date(f+'T12:00:00').getDay(),lblF=f=>{const d=new Date(f+'T12:00:00');return DN[d.getDay()]+' '+d.getDate()+' '+MES[d.getMonth()]};
+
+/* ---------- datos ---------- */
+const R=DATA.R.map((r,id)=>({id,dow:r[0],ini:r[1],fin:r[2],aula:r[3],mat:DATA.M[r[4]],gr:r[5],cur:r[6],doc:DATA.D[r[7]],ci:r[8],car:DATA.CN[r[8]],n:r[9],tg:r[10]}));
+R.forEach(r=>{r.coh=r.ci+'|'+r.cur;r.mk=r.coh+'|'+r.mat;r.gk=r.mk+'|'+r.gr+'·'+r.tg});
+const BT=new Map();R.forEach(r=>{const o=BT.get(r.mk),rk=r.tg==='Teo'?3:r.tg==='Prac'?2:r.tg?1:0;if(!o||rk>o.rk)BT.set(r.mk,{t:r.tg,rk})});
+const esBase=gk=>(gk.split('·')[1]||'')===(BT.get(gk.slice(0,gk.lastIndexOf('|')))?.t||'');
+const gSize=new Map();R.forEach(r=>gSize.set(r.gk,Math.max(gSize.get(r.gk)||0,r.n)));
+const mSum=new Map();gSize.forEach((n,gk)=>{if(!esBase(gk))return;const mk=gk.slice(0,gk.lastIndexOf('|'));mSum.set(mk,(mSum.get(mk)||0)+n)});
+const COH=new Map();mSum.forEach((s,mk)=>{const p=mk.split('|'),c=p[0]+'|'+p[1];COH.set(c,Math.max(COH.get(c)||0,s))});
+const CURS=[...new Set(R.map(r=>+r.cur))].sort((a,b)=>a-b);
+const TOT=DATA.CM.reduce((s,x)=>s+x[2],0);
+
+/* ---------- estado ---------- */
+let J=LS.g('mc_j',{}),AV=LS.g('mc_v',{});
+let tab='res',F=null,ops=[],pend=false,cache=true,tt,rq,hd=Math.min(6,Math.max(1,new Date().getDay()||1)),hc='',hs='',ht='',prev=null,altCtx=null;
+const keep=()=>{LS.s('mc_j',J);LS.s('mc_v',AV)};
+
+/* ---------- cobertura ---------- */
+function estado(V){
+ const covG=new Set(),gN=new Map();
+ for(const v of Object.values(V)){const r=R[v.id];if(!r)continue;covG.add(r.gk);gN.set(r.gk,Math.max(gN.get(r.gk)||0,Math.min(v.n??r.n,COH.get(r.coh)||r.n)))}
+ const covM=new Map();gN.forEach((n,gk)=>{const mk=gk.slice(0,gk.lastIndexOf('|'));covM.set(mk,(covM.get(mk)||0)+n)});
+ const coh=new Map();covM.forEach((c,mk)=>{const p=mk.split('|'),k=p[0]+'|'+p[1],S=COH.get(k)||1;coh.set(k,(coh.get(k)||1)*(1-Math.min(1,c/S)))});
+ const car={};let tot=0;coh.forEach((pr,k)=>{const ci=+k.split('|')[0];car[ci]=(car[ci]||0)+(COH.get(k)||0)*(1-pr)});
+ for(const ci in car){car[ci]=Math.min(car[ci],DATA.CM[ci][2]||Infinity);tot+=car[ci]}
+ return{covG,covM,coh,car,tot};
+}
+let U=estado({});
+function derive(){U=estado(AV);render()}
+function gainCon(r,E){if(E.covG.has(r.gk))return 0;const S=COH.get(r.coh)||r.n,cm=E.covM.get(r.mk)||0,fm=Math.min(1,cm/S),pa=E.coh.get(r.coh)??1,ot=fm<1?pa/(1-fm):0;return S*ot*(Math.min(1,(cm+r.n)/S)-fm)}
+const gain=r=>gainCon(r,U);
+const enClase=(r,t)=>r.ini<=t&&r.fin>=t+AULA_MIN;
+
+/* ---------- estimar aulas de una jornada ---------- */
+function estimar(fecha,ini,fin,base){
+ const dow=dowF(fecha),V={...base},out=[];
+ for(let t=ini;t+AULA_MIN<=fin;t+=PASO){
+  const E=estado(V);
+  const c=R.filter(r=>r.dow===dow&&enClase(r,t)&&!V[r.id]&&r.n>=5).map(r=>({r,g:gainCon(r,E)})).filter(x=>x.g>0.5).sort((a,b)=>b.g-a.g)[0];
+  if(!c)continue;
+  V[c.r.id]={id:c.r.id,n:c.r.n};out.push({t,id:c.r.id,g:c.g});
+ }
+ return out;
+}
+const sinJ=jid=>Object.fromEntries(Object.entries(AV).filter(([k,v])=>v.j!==jid));
+function guardarJornada(fecha,ini,fin,lista,jid){
+ jid=jid||'j'+Date.now()+Math.floor(Math.random()*999);
+ Object.keys(AV).forEach(k=>{if(AV[k].j===jid)delete AV[k]});
+ J[jid]={id:jid,fecha,ini,fin,ids:lista.map(x=>x.id)};
+ lista.forEach(x=>{const r=R[x.id];AV[x.id]={id:x.id,n:r.n,j:jid,t:fecha+'T'+hm(x.t),slot:x.t,est:true}});
+ keep();sync_(jid);derive();return jid;
+}
+function sembrar(){
+ if(LS.g('mc_seed',0)||Object.keys(J).length)return;
+ SEMILLA.slice().sort((a,b)=>(a[0]+a[1]).localeCompare(b[0]+b[1])).forEach(([f,a,b])=>{const l=estimar(f,mins(a),mins(b),AV);guardarJornada(f,mins(a),mins(b),l)});
+ LS.s('mc_seed',1);
+}
+
+/* ---------- Firestore (opcional) ---------- */
+const Wq=f=>F?f():ops.push(f),fail=e=>toast('No se guardó en la nube ('+(e.code||e)+')');
+function sync_(jid){Wq(()=>{const j=J[jid];if(!j)return F.deleteDoc(F.doc(F.db,'meca_jornadas',jid)).catch(fail);const vis=Object.values(AV).filter(v=>v.j===jid);return F.setDoc(F.doc(F.db,'meca_jornadas',jid),{...j,vis}).catch(fail)})}
+function syncSueltas(){Wq(()=>F.setDoc(F.doc(F.db,'meca_jornadas','_sueltas'),{id:'_sueltas',vis:Object.values(AV).filter(v=>!v.j)}).catch(fail))}
+window.fbReady=f=>{F=f;ops.splice(0).forEach(o=>o());
+ F.onSnapshot(F.collection(F.db,'meca_jornadas'),{includeMetadataChanges:true},s=>{pend=s.metadata.hasPendingWrites;cache=s.metadata.fromCache;status();
+  if(s.empty&&s.metadata.fromCache)return;if(s.empty){Object.keys(J).forEach(sync_);syncSueltas();return}
+  const j={},v={};s.forEach(x=>{const d=x.data();(d.vis||[]).forEach(a=>v[a.id]=a);if(x.id!=='_sueltas'){const{vis,...rest}=d;j[x.id]=rest}});J=j;AV=v;keep();derive()},()=>{cache=true;status('Sin permiso')})};
+window.fbConfig=()=>FB_CONFIG||LS.g('mc_fb',null);
+
+/* ---------- acciones ---------- */
+function quitarAula(id){const v=AV[id];if(!v)return;delete AV[id];if(v.j&&J[v.j])J[v.j].ids=J[v.j].ids.filter(x=>x!==id);keep();v.j?sync_(v.j):syncSueltas();derive();toast('Aula quitada')}
+function confirmar(id){const v=AV[id];if(!v)return;v.est=!v.est;keep();v.j?sync_(v.j):syncSueltas();render()}
+function marcarSuelta(id){const r=R[id];AV[id]={id,n:r.n,j:null,t:new Date().toISOString(),est:false};keep();syncSueltas();derive();toast('Aula '+r.aula+' marcada',[['Deshacer',()=>quitarAula(id)]])}
+function borrarJornada(jid){if(!confirm('¿Borrar esta jornada y sus aulas?'))return;Object.keys(AV).forEach(k=>{if(AV[k].j===jid)delete AV[k]});delete J[jid];keep();sync_(jid);derive()}
+function recalcular(jid){const j=J[jid];const l=estimar(j.fecha,j.ini,j.fin,sinJ(jid));guardarJornada(j.fecha,j.ini,j.fin,l,jid);toast('Jornada recalculada')}
+function cambiarOpen(id){
+ const v=AV[id],r=R[id],t=v.slot??r.ini,base=Object.fromEntries(Object.entries(AV).filter(([k])=>+k!==id)),E=estado(base);
+ const L=R.filter(x=>x.dow===r.dow&&enClase(x,t)&&!base[x.id]).map(x=>({x,g:gainCon(x,E)})).sort((a,b)=>b.g-a.g).slice(0,12);
+ altCtx={id,t};$('#altT').textContent='Cambiar aula · '+hm(t);$('#altS').textContent='Clases en curso a esa hora. Elige la que visitaste.';
+ $('#altL').innerHTML=L.map(({x,g})=>clase(x,{pick:1,g})).join('')||'<div class="e">No hay otras clases a esa hora.</div>';$('#sAlt').classList.add('o');
+}
+function cambiar(nid){const{id,t}=altCtx,v=AV[id];delete AV[id];const r=R[nid];AV[nid]={id:nid,n:r.n,j:v.j,t:v.t,slot:t,est:false};if(v.j&&J[v.j])J[v.j].ids=J[v.j].ids.map(x=>x===id?nid:x);keep();v.j?sync_(v.j):syncSueltas();closeS();derive();toast('Aula cambiada')}
+
+/* ---------- piezas ---------- */
+const chipC=ci=>`<span class="chip" style="background:${CC[ci%CC.length]}1f;color:${CC[ci%CC.length]}">${esc(DATA.CN[ci])}</span>`;
+function clase(r,o={}){
+ const v=AV[r.id],cub=!v&&U.covG.has(r.gk),t=nowM(),now=r.dow===new Date().getDay()&&r.ini<=t&&r.fin>t,g=o.g??gain(r);
+ let tg=chipC(r.ci)+`<span class="chip">${esc(r.cur)}.º sem</span>`;if(r.tg)tg+=`<span class="chip">${esc(r.tg)}</span>`;
+ if(v)tg+=v.est?'<span class="chip est">Estimada</span>':'<span class="chip ok">Visitada</span>';else if(cub)tg+='<span class="chip ok">Grupo cubierto</span>';
+ if(now&&!o.pick)tg+='<span class="chip now">En clase</span>';
+ const ac=o.pick?`<button class="c" onclick="cambiar(${r.id})">${ic('check',16,2.5)} Esta fue</button>`:v?`<button onclick="quitarAula(${r.id})">${ic('x',15)} Quitar</button>`:`<button class="p" onclick="marcarSuelta(${r.id})">${ic('check',16,2.5)} Visitada</button>`;
+ return `<div class="cl${v||cub?' vis':''}" style="--k:${CC[r.ci%CC.length]}"><div class="t"><b>${hm(r.ini)}–${hm(r.fin)}</b>${tg}<span class="sp">${r.n} est.${!v&&!cub?' · <b>+'+fmt(g)+'</b>':''}</span></div>
+ <div class="a1">Aula ${esc(r.aula)}</div><div class="m1">${esc(r.mat)} · Gr. ${esc(r.gr)}</div><div class="m2">${esc(r.doc)}</div><div class="ac">${ac}</div></div>`;
+}
+
+/* ---------- RESUMEN ---------- */
+function vRes(){
+ const nA=Object.keys(AV).length,nJ=Object.keys(J).length,hrs=Object.values(J).reduce((s,j)=>s+(j.fin-j.ini),0)/60;
+ const pct=TOT?U.tot/TOT*100:0;
+ let h=`<div class="kp"><div class="hl"><b>${fmt(U.tot)}</b><span>estudiantes alcanzados de ${fmt(TOT)} · ${Math.round(pct)}%</span></div><div><b>${nA}</b><span>aulas visitadas · ${nJ} jornadas</span></div>
+ <div><b>${hrs.toFixed(1).replace('.',',')} h</b><span>de recorrido</span></div><div><b>${fmt(TOT-U.tot)}</b><span>estudiantes por alcanzar</span></div></div>`;
+ // matriz carrera x semestre
+ const pc=(ci,cur)=>{const k=ci+'|'+cur;if(!COH.has(k))return null;return 1-(U.coh.get(k)??1)};
+ h+=`<div class="k"><h4>${ic('grid')}Alcance por carrera y semestre</h4><div class="mxw"><table class="mx"><thead><tr><th></th>${CURS.map(c=>`<th>${c}</th>`).join('')}<th>Total</th></tr></thead><tbody>`+
+ DATA.C.map((c,ci)=>{const tc=DATA.CM[ci][2],a=U.car[ci]||0;return `<tr><td class="n">${esc(DATA.CN[ci])}</td>${CURS.map(cu=>{const p=pc(ci,String(cu));if(p===null)return'<td style="background:#f6f7f9;color:#c4cbd3">·</td>';const q=Math.round(p*100);return`<td style="background:rgba(14,159,176,${(.08+p*.85).toFixed(2)});color:${p>.55?'#fff':'#1f2933'}">${q}</td>`}).join('')}<td style="background:var(--soft)">${tc?Math.round(a/tc*100):0}%</td></tr>`}).join('')+
+ `</tbody></table></div><p class="s" style="margin:8px 0 0">% de estudiantes de cada semestre alcanzados. Gris: sin clases en el horario.</p></div>`;
+ // por carrera
+ h+=`<div class="k"><h4>${ic('cap')}Por carrera</h4>${DATA.C.map((c,ci)=>{const t=DATA.CM[ci][2],a=U.car[ci]||0;return`<div class="row"><div><span>${esc(DATA.CN[ci])}</span><b>${t?Math.round(a/t*100):0}% <span class="s">· ${fmt(a)}/${fmt(t)}</span></b></div><div class="bar"><i style="width:${t?Math.min(100,a/t*100):0}%;background:${CC[ci%CC.length]}"></i></div></div>`}).join('')}</div>`;
+ // por día de la semana
+ const byD={};Object.values(AV).forEach(v=>{const r=R[v.id];if(!r)return;const d=v.t?dowF(v.t.slice(0,10)):r.dow;(byD[d]??={a:0,e:0});byD[d].a++;byD[d].e+=r.n});
+ const best=[1,2,3,4,5,6].map(d=>{const bl=[];for(let x=7*60;x<22*60;x+=60){const s=R.filter(r=>r.dow===d&&r.ini<x+60&&r.fin>x&&!AV[r.id]&&!U.covG.has(r.gk)).reduce((s,r)=>s+gain(r),0);bl.push([x,s])}return[d,bl.sort((a,b)=>b[1]-a[1]).slice(0,2)]});
+ h+=`<div class="k"><h4>${ic('cal')}Por día</h4><table class="mx" style="border-spacing:0 4px"><thead><tr><th style="text-align:left">Día</th><th>Aulas</th><th>Est. en aula</th><th style="text-align:left">Mejor hora pendiente</th></tr></thead><tbody>${best.map(([d,bl])=>`<tr><td class="n">${DN[d]}</td><td style="font-weight:700">${byD[d]?.a||0}</td><td>${fmt(byD[d]?.e||0)}</td><td style="text-align:left;font-weight:500">${bl.filter(x=>x[1]>1).map(([x,s])=>`${hm(x)} <span class="s">(+${fmt(s)})</span>`).join(' · ')||'<span class="s">–</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+ h+=`<div class="warn">${ic('alert',18)}<span>Mecatrónica tiene ${DATA.CM[DATA.CN.indexOf('Mecatrónica')]?.[2]||0} estudiantes pero solo ${R.filter(r=>r.car==='Mecatrónica').length} clases en el horario: sus materias comunes pueden figurar en otra carrera.</span></div>`;
+ h+=`<details><summary>${ic('user')}Decanato 2026–2030</summary><p class="s">Único candidato habilitado: <b>Germán Palacios Márquez</b>. Franklin Torres Espada quedó inhabilitado (Res. Electoral 002/2026). Elección: viernes 6 de noviembre.</p></details>`;
+ $('#v-res').innerHTML=h;
+}
+
+/* ---------- JORNADAS ---------- */
+function vJor(){
+ let h=`<div class="k"><h4>${ic('walk')}Nueva jornada</h4><div class="f3"><div><label class="lab">Fecha</label><input id="jf" type="date" value="${today()}"></div><div><label class="lab">Desde</label><input id="ja" type="time" value="08:30"></div><div><label class="lab">Hasta</label><input id="jb" type="time" value="11:00"></div></div>
+ <p class="s" style="margin:8px 0">${AULA_MIN} min por aula + ${PASILLO} min de pasillo. Se eligen las aulas con más estudiantes nuevos en clase a cada hora.</p>
+ <div style="display:flex;gap:6px"><button class="c" style="flex:1" onclick="previa()">${ic('bolt',16)} Calcular aulas</button>${prev?`<button class="p" style="flex:1" onclick="guardarPrevia()">${ic('check',16,2.5)} Guardar</button>`:''}</div>
+ ${prev?`<div style="margin-top:10px">${prev.l.length?prev.l.map(x=>{const r=R[x.id];return`<div class="it" style="border:1px solid var(--line);border-radius:8px;margin:5px 0"><span class="h">${hm(x.t)}</span><span class="x1"><b>Aula ${esc(r.aula)} · ${esc(r.car)} ${esc(r.cur)}.º</b><span>${esc(r.mat)} · Gr. ${esc(r.gr)} ${esc(r.tg)} · ${r.n} est.</span></span><span class="chip cy">+${fmt(x.g)}</span></div>`}).join(''):'<p class="s">No hay clases en ese horario.</p>'}</div>`:''}</div>`;
+ const L=Object.values(J).sort((a,b)=>(b.fecha+hm(b.ini)).localeCompare(a.fecha+hm(a.ini)));
+ if(!L.length)h+='<div class="e">Sin jornadas.</div>';
+ for(const j of L){const vis=j.ids.map(id=>AV[id]).filter(Boolean),est=vis.reduce((s,v)=>s+(R[v.id]?.n||0),0),d=new Date(j.fecha+'T12:00:00');
+  h+=`<div class="jo"><div class="jh"><div class="d"><span>${DN[d.getDay()]}</span><b>${d.getDate()}</b><span>${MES[d.getMonth()]}</span></div><div class="i"><b>${hm(j.ini)} – ${hm(j.fin)}</b><div>${vis.length} aulas · ${fmt(est)} estudiantes en aula</div></div>
+  <button title="Recalcular" onclick="recalcular('${j.id}')">${ic('bolt',16)}</button><button class="x" title="Borrar" onclick="borrarJornada('${j.id}')">${ic('trash',16)}</button></div>
+  ${vis.sort((a,b)=>(a.slot||0)-(b.slot||0)).map(v=>{const r=R[v.id];return`<div class="it"><span class="h">${hm(v.slot??r.ini)}</span><span class="x1"><b>Aula ${esc(r.aula)} · ${esc(r.car)} ${esc(r.cur)}.º</b><span>${esc(r.mat)} · Gr. ${esc(r.gr)} ${esc(r.tg)} · ${r.n} est.</span></span>${v.est?'<span class="chip est">Est.</span>':'<span class="chip ok">OK</span>'}
+  <button title="${v.est?'Confirmar':'Marcar estimada'}" onclick="confirmar(${v.id})">${ic('check',15,2.5)}</button><button title="Cambiar" onclick="cambiarOpen(${v.id})">${ic('swap',15)}</button><button title="Quitar" onclick="quitarAula(${v.id})">${ic('x',15)}</button></div>`}).join('')}</div>`}
+ $('#v-jor').innerHTML=h;
+}
+function previa(){const f=$('#jf').value,a=mins($('#ja').value),b=mins($('#jb').value);if(!f||b<=a)return toast('Revisa la fecha y las horas');prev={f,a,b,l:estimar(f,a,b,AV)};vJor()}
+function guardarPrevia(){if(!prev)return;guardarJornada(prev.f,prev.a,prev.b,prev.l);prev=null;toast('Jornada guardada')}
+
+/* ---------- HORARIO ---------- */
+function vHor(){
+ const L=R.filter(r=>r.dow===hd&&(hc===''||r.ci===+hc)&&(hs===''||r.cur===hs)&&(ht===''||r.tg===ht)).sort((a,b)=>a.ini-b.ini||b.n-a.n);
+ const est=L.reduce((s,r)=>s+r.n,0);
+ let h=`<div class="k"><div class="seg" style="margin-top:0">${[1,2,3,4,5,6].map(d=>`<button class="${hd===d?'on':''}" onclick="hd=${d};vHor()">${DN[d]}</button>`).join('')}</div>
+ <div class="f3" style="grid-template-columns:1.3fr 1fr 1fr"><select onchange="hc=this.value;vHor()"><option value="">Carrera</option>${DATA.CN.map((c,i)=>`<option value="${i}" ${hc===String(i)?'selected':''}>${esc(c)}</option>`).join('')}</select>
+ <select onchange="hs=this.value;vHor()"><option value="">Semestre</option>${CURS.map(c=>`<option ${hs===String(c)?'selected':''} value="${c}">${c}.º</option>`).join('')}</select>
+ <select onchange="ht=this.value;vHor()"><option value="">Tipo</option>${['Teo','Prac','Lab'].map(t=>`<option ${ht===t?'selected':''}>${t}</option>`).join('')}</select></div>
+ <p class="s" style="margin:8px 0 0">${L.length} clases · ${fmt(est)} estudiantes en aula</p></div>`;
+ let blk=-1;for(const r of L){const b=Math.floor(r.ini/60);if(b!==blk){blk=b;h+=`<div class="hd">${hm(b*60)}</div>`}h+=clase(r)}
+ if(!L.length)h+='<div class="e">Sin clases con estos filtros.</div>';
+ $('#v-hor').innerHTML=h;
+}
+
+/* ---------- AHORA ---------- */
+function vAho(){
+ const d=new Date(),dw=d.getDay(),t=nowM();
+ const L=R.filter(r=>r.dow===dw&&r.ini<=t+15&&r.fin-AULA_MIN>=t&&!AV[r.id]&&!U.covG.has(r.gk)).map(r=>({r,g:gain(r)})).filter(x=>x.g>0.5).sort((a,b)=>b.g-a.g);
+ const tot=R.filter(r=>r.dow===dw&&r.ini<=t&&r.fin>t).reduce((s,r)=>s+r.n,0);
+ $('#v-aho').innerHTML=`<div class="k"><h4>${ic('clock')}${DN[dw]} ${hm(t)}</h4><div class="kp" style="margin:0"><div class="hl"><b>${fmt(tot)}</b><span>estudiantes en clase ahora</span></div><div><b>${L.length}</b><span>aulas por visitar</span></div></div></div>`
+  +(L.slice(0,20).map(x=>clase(x.r,{g:x.g})).join('')||'<div class="e">Nada pendiente en este momento.</div>');
+}
+
+/* ---------- AJUSTES ---------- */
+const RULES=`rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /meca_jornadas/{id} { allow read, write: if true; }\n  }\n}`;
+function vCfg(){const c=fbConfig();
+ $('#v-cfg').innerHTML=`<div class="k"><h4>${ic('db')}Nube (Firebase)</h4><p class="s" style="margin:0 0 8px">${c?'Proyecto <b>'+esc(c.projectId)+'</b>':'Sin configurar: los datos quedan en este celular.'}</p><textarea id="fbTx" rows="4" placeholder="Pega el bloque firebaseConfig"></textarea><div style="display:flex;gap:6px;margin-top:8px"><button class="p" style="flex:1" onclick="fbSave()">Guardar y conectar</button>${c&&!FB_CONFIG?'<button onclick="localStorage.removeItem(\'mc_fb\');location.reload()">Quitar</button>':''}</div></div>
+ <details><summary>${ic('shield')}Reglas de Firestore</summary><pre>${esc(RULES)}</pre><button onclick="navigator.clipboard.writeText(RULES).then(()=>toast('Copiado'))">Copiar</button></details>
+ <div class="k"><h4>${ic('dl')}Exportar</h4><button style="width:100%" onclick="csv()">Aulas visitadas (CSV)</button></div>
+ <details><summary>${ic('trash')}Reiniciar</summary><p class="s">Borra jornadas y aulas y vuelve a cargar las jornadas iniciales.</p><button class="x" onclick="reiniciar()">Reiniciar</button></details>`}
+function fbSave(){const t=$('#fbTx').value,o={};['apiKey','authDomain','projectId','storageBucket','messagingSenderId','appId'].forEach(k=>{const m=t.match(new RegExp(k+'\\s*[:=]\\s*["\']([^"\']+)["\']'));if(m)o[k]=m[1]});if(!o.apiKey||!o.projectId)return toast('Falta apiKey o projectId');LS.s('mc_fb',o);location.reload()}
+function csv(){const H=['fecha','hora','estado','aula','carrera','semestre','materia','grupo','tipo','docente','estudiantes','jornada'];
+ const rows=Object.values(AV).map(v=>{const r=R[v.id];const j=J[v.j];return[v.t?.slice(0,10)||'',hm(v.slot??r.ini),v.est?'estimada':'confirmada',r.aula,r.car,r.cur,r.mat,r.gr,r.tg,r.doc,r.n,j?hm(j.ini)+'-'+hm(j.fin):'suelta']});
+ const s='﻿'+[H,...rows].map(a=>a.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([s],{type:'text/csv'}));a.download='ficam_visitas.csv';a.click()}
+function reiniciar(){if(prompt('Escribe BORRAR para reiniciar')!=='BORRAR')return;const ids=Object.keys(J);J={};AV={};LS.s('mc_seed',0);keep();ids.forEach(sync_);syncSueltas();sembrar();derive()}
+
+/* ---------- base ---------- */
+const NAV=[['res','home','Resumen'],['jor','walk','Jornadas'],['hor','cal','Horario'],['aho','zap','Ahora'],['cfg','gear','Ajustes']];
+function status(txt){const e=$('#st'),c=fbConfig(),off=!navigator.onLine||!F||cache;e.className=off||pend?'w':'';e.textContent=txt||(!navigator.onLine?'Sin internet':!c?'Local':!F?'Conectando':cache?'Sin nube':pend?'Guardando':'En línea')}
+function draw(){$('#nav').innerHTML=NAV.map(([k,i,l])=>`<button data-t="${k}" class="${tab===k?'on':''}">${ic(i,21)}${l}</button>`).join('');status();({res:vRes,jor:vJor,hor:vHor,aho:vAho,cfg:vCfg})[tab]()}
+function render(){cancelAnimationFrame(rq);rq=requestAnimationFrame(draw)}
+function go(t){tab=t;document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==='v-'+t));scrollTo(0,0);render()}
+const closeS=()=>document.querySelectorAll('.sh').forEach(s=>s.classList.remove('o'));
+function toast(m,acts){const t=$('#toast');t.innerHTML=`<span>${esc(m)}</span>`;(acts||[]).forEach(([l,f])=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>{t.classList.remove('o');f()};t.append(b)});t.classList.add('o');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('o'),acts?6000:2600)}
+document.addEventListener('click',e=>{const s=e.target.closest('.sh');if(s&&e.target===s)return closeS();const b=e.target.closest('button');if(b&&b.dataset.t)go(b.dataset.t)});
+addEventListener('online',()=>status());addEventListener('offline',()=>status());
+setInterval(()=>{if(tab==='aho'&&!document.querySelector('.sh.o'))render()},60000);
+$('#lg').innerHTML=`<span style="color:#fff">${ic('bolt',20,2.2)}</span>`;
+sembrar();derive();
+</script>
+<script type="module">
+const cfg=window.fbConfig();
+if(cfg){const{initializeApp}=await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");const M=await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+ const app=initializeApp(cfg);let db;try{db=M.initializeFirestore(app,{localCache:M.persistentLocalCache({tabManager:M.persistentMultipleTabManager()})})}catch{db=M.getFirestore(app)}
+ window.fbReady({db,doc:M.doc,setDoc:M.setDoc,deleteDoc:M.deleteDoc,onSnapshot:M.onSnapshot,collection:M.collection});}
+</script>
+</body></html>
